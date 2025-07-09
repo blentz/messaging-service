@@ -102,15 +102,15 @@ The service should implement:
 
 ### Project Structure
 
-This project structure is laid out for you already. You are welcome to move or change things, just update the Makefile, scripts, and/or docker resources accordingly. As part of the evaluation of your code, we will run 
+This project structure is laid out for you already. You are welcome to move or change things, just update the Makefile, scripts, and/or podman resources accordingly. As part of the evaluation of your code, we will run 
 
 ```
 .
 ├── bin/                    # Scripts and executables
 │   ├── start.sh           # Application startup script
 │   └── test.sh            # API testing script with curl commands
-├── docker-compose.yml      # PostgreSQL database setup
-├── Makefile               # Build and development commands with docker-compose integration
+├── podman-compose.yml      # PostgreSQL database setup
+├── Makefile               # Build and development commands with podman-compose integration
 └── README.md              # This file
 ```
 
@@ -118,20 +118,20 @@ This project structure is laid out for you already. You are welcome to move or c
 
 1. Clone the repository
 2. Run `make setup` to initialize the project
-3. Run `docker-compose up -d` to start the PostgreSQL database, or modify it to choose a database of your choice
+3. Run `podman-compose up -d` to start the PostgreSQL database, or modify it to choose a database of your choice
 4. Run `make run` to start the application
 5. Run `make test` to run tests
 
 ## Development
 
-- Use `docker-compose up -d` to start the PostgreSQL database
+- Use `podman-compose up -d` to start the PostgreSQL database
 - Use `make run` to start the development server
 - Use `make test` to run tests
-- Use `docker-compose down` to stop the database
+- Use `podman-compose down` to stop the database
 
 ## Database
 
-The application uses PostgreSQL as its database. The docker-compose.yml file sets up:
+The application uses PostgreSQL as its database. The podman-compose.yml file sets up:
 - PostgreSQL 15 with Alpine Linux
 - Database: `messaging_service`
 - User: `messaging_user`
@@ -140,7 +140,7 @@ The application uses PostgreSQL as its database. The docker-compose.yml file set
 
 To connect to the database directly:
 ```bash
-docker-compose exec postgres psql -U messaging_user -d messaging_service
+podman-compose exec postgres psql -U messaging_user -d messaging_service
 ```
 
-Again, you are welcome to make changes here, as long as they're in the docker-compose.yml
+Again, you are welcome to make changes here, as long as they're in the podman-compose.yml

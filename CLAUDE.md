@@ -6,32 +6,38 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a **backend interview project scaffold** for Hatch that provides infrastructure for building a unified messaging service. The project is currently in template state - it has complete infrastructure setup and requirements but **no implementation code**.
 
 ## Technology Stack
-- **Language**: Python 3.13.5
-- **Virtual Environment**: virtualenv with `mkvirtualenv` and `workon`
-- **Dependency Management**: uv
+- **Language**: Python 3.11 (compatible with Atheris fuzzing library)
+- **Environment Management**: uv (handles both virtual environments and dependencies)
 - **Database**: PostgreSQL 15 (Alpine Linux) via Docker Compose
 - **Infrastructure**: Docker/Podman for containerization
 - **Build System**: Makefile for development tasks
 - **Linting**: ruff
 - **Testing**: pytest
+- **Security Testing**: Atheris coverage-guided fuzzing
 - **AI Reasoning**: @sentient-agi-reasoning for deep thinking and analysis
 
 ## Common Development Commands
 
 ### Python Environment Setup
 ```bash
-mkvirtualenv messaging-service    # Create virtual environment
-workon messaging-service         # Activate virtual environment
+uv sync                          # Install dependencies and create virtual environment
 uv add <package>                 # Add Python dependencies
-uv sync                          # Install dependencies
+uv run <command>                 # Run commands in the uv-managed environment
 ```
 
 ### Development Tools
 ```bash
-ruff check .                     # Run linting
-ruff format .                    # Format code
-pytest                           # Run unit tests
-pytest --cov=. --cov-report=html # Run tests with coverage report
+uv run ruff check .                     # Run linting
+uv run ruff format .                    # Format code
+uv run pytest                           # Run unit tests
+uv run pytest --cov=. --cov-report=html # Run tests with coverage report
+```
+
+### Security Testing
+```bash
+./bin/validate_security.sh              # Run complete security validation
+./bin/run_atheris_fuzz.sh <test_name>   # Run individual Atheris fuzz tests
+uv run python tests/security/test_atheris_fuzz.py <test_name> # Direct fuzz test execution
 ```
 
 ### Setup and Database

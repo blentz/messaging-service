@@ -2,5 +2,14 @@
 
 *.py[co]
 __pycache__/*
-
+.pytest_cache/*
+.venv/*
+uv.lock
+.coverage
+.env
 **/*.log
+atheris_results_*
+security_validation_*
+webhook_processing/*
+conversation_api/*
+.security_validation_config
